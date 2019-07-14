@@ -4,11 +4,15 @@
     - dev
 --- 
 server:
-  port: 8001
-spring: 
-   profiles: dev
-   application: 
-       name: springcloud-config-dept-client
+   port: 8001
+mybatis:
+   config-location: classpath:mybatis/mybatis.cfg.xml # mybatis配置文件所在路径
+   type-aliases-package: com.wang.entity # 所有Entity别名类所在包
+   mapper-locations:
+   - classpath:mybatis/mapper/**/*.xml # mapper映射文件
+spring:
+   application:
+      name: springcloud-config-dept-client
    datasource:
       type: com.alibaba.druid.pool.DruidDataSource # 当前数据源操作类型
       driver-class-name: org.gjt.mm.mysql.Driver # mysql驱动包
@@ -21,32 +25,31 @@ spring:
          initial-size: 5 # 初始化连接数
          max-total: 5 # 最大连接数
          max-wait-millis: 200 # 等待连接获取的最大超时时间
+eureka:
+   client: #客户端注册进eureka服务列表内
+      service-url:
+         defaultZone: http://eureka7001.com:7001/eureka
+   instance:
+      instance-id: springcloud-dept8001 #自定义服务名称信息
+      prefer-ip-address: true #访问路径可以显示IP地址
+info:
+   app.name: springcloud-dept8001-app.name
+   company.name: wangchuang
+   build.artifactId: $project.artifactId$
+   build.version: $project.version$
+   test.a: testa
+   test.b: testb
+---
+server:
+   port: 8002
 mybatis:
    config-location: classpath:mybatis/mybatis.cfg.xml # mybatis配置文件所在路径
    type-aliases-package: com.wang.entity # 所有Entity别名类所在包
    mapper-locations:
    - classpath:mybatis/mapper/**/*.xml # mapper映射文件
- 
-eureka: 
-  client: #客户端注册进eureka服务列表内
-    service-url: 
-      defaultZone: http://eureka7001.com:7001/eureka
-  instance:
-    instance-id: dept-8001.com
-    prefer-ip-address: true
- 
-info:
-  app.name: wang-springcloud-springcloudconfig01
-  company.name: www.wang.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
----
-server:
-  port: 8001
-spring: 
-   profiles: test
-    application: 
-       name: springcloud-config-dept-client
+spring:
+   application:
+      name: springcloud-config-dept-client
    datasource:
       type: com.alibaba.druid.pool.DruidDataSource # 当前数据源操作类型
       driver-class-name: org.gjt.mm.mysql.Driver # mysql驱动包
@@ -59,25 +62,18 @@ spring:
          initial-size: 5 # 初始化连接数
          max-total: 5 # 最大连接数
          max-wait-millis: 200 # 等待连接获取的最大超时时间
-  
-  
-mybatis:
-   config-location: classpath:mybatis/mybatis.cfg.xml # mybatis配置文件所在路径
-   type-aliases-package: com.wang.entity # 所有Entity别名类所在包
-   mapper-locations:
-   - classpath:mybatis/mapper/**/*.xml # mapper映射文件
- 
-eureka: 
-  client: #客户端注册进eureka服务列表内
-    service-url: 
-      defaultZone: http://eureka7001.com:7001/eureka
-  instance:
-    instance-id: dept-8001.com
-    prefer-ip-address: true
- 
+eureka:
+   client: #客户端注册进eureka服务列表内
+      service-url:
+         defaultZone: http://eureka7001.com:7001/eureka/
+   instance:
+      instance-id: springcloud-dept8002 #自定义服务名称信息
+      prefer-ip-address: true #访问路径可以显示IP地址
 info:
-  app.name: springcloud-springcloudconfig02
-  company.name: www.wang.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
+   app.name: springcloud-dept8002-app.name
+   company.name: wangchuang
+   build.artifactId: $project.artifactId$
+   build.version: $project.version$
+   test.a: testa
+   test.b: testb
 
