@@ -11,6 +11,7 @@ mybatis:
    mapper-locations:
    - classpath:mybatis/mapper/**/*.xml # mapper映射文件
 spring:
+   profiles: dev
    application:
       name: springcloud-config-dept-client
    datasource:
@@ -48,6 +49,7 @@ mybatis:
    mapper-locations:
    - classpath:mybatis/mapper/**/*.xml # mapper映射文件
 spring:
+   profiles: test
    application:
       name: springcloud-config-dept-client
    datasource:
