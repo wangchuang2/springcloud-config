@@ -6,12 +6,12 @@
 spring:
   profiles: dev     #开发环境
   application: 
-    name: springcloud-config-atguigu-dev
+    name: springcloud-config-wang-dev
 ---
 spring:
   profiles: test   #测试环境
   application: 
-    name: springcloud-config-atguigu-test
+    name: springcloud-config-wang-test
 #  请保存为UTF-8格式
  
  
